@@ -7,10 +7,16 @@
         <field name="sequence">101</field>
     </record>
 
+    <!-- Define the privilege for Anonymize Contacts -->
+    <record id="privilege_partner_anonymize" model="res.groups.privilege">
+        <field name="name">Anonymize Contacts</field>
+        <field name="category_id" ref="module_category_anonymize_contacts"/>
+    </record>
+
     <!-- Define the group for Anonymize Contacts -->
     <record id="group_partner_anonymize" model="res.groups">
         <field name="name">Administrator</field>
-        <field name="category_id" ref="module_category_anonymize_contacts"/>
+        <field name="privilege_id" ref="privilege_partner_anonymize"/>
         <field name="user_ids" eval="[(4, ref('base.user_admin'))]"/>
         <field
             name="comment"
