@@ -61,14 +61,14 @@ class PrivacyConsent(models.Model):
     def _creation_subtype(self):
         return self.env.ref("privacy_consent.mt_consent_consent_new")
 
-    def _track_subtype(self, init_values):
+    def _track_subtype(self, init_values, **kwargs):
         """Return specific subtypes."""
         self.ensure_one()
         if self.env.context.get("subject_answering"):
             return self.env.ref("privacy_consent.mt_consent_acceptance_changed")
         if "state" in init_values:
             return self.env.ref("privacy_consent.mt_consent_state_changed")
-        return super()._track_subtype(init_values)
+        return super()._track_subtype(init_values, **kwargs)
 
     def _token(self):
         """Secret token to publicly authenticate this record."""
@@ -117,21 +117,21 @@ class PrivacyConsent(models.Model):
             action.run()
 
     @api.model_create_multi
-    def create(self, vals_list):
+    def create(self, vals_list, **kwargs):
         """Run server action on create."""
-        results = super().create(vals_list)
+        results = super().create(vals_list, **kwargs)
         # Sync the default acceptance status
         results._run_action()
         return results
 
-    def write(self, vals):
+    def write(self, vals, **kwargs):
         """Run server action on update."""
-        result = super().write(vals)
+        result = super().write(vals, **kwargs)
         self._run_action()
         return result
 
-    def _message_get_suggested_recipients(self):
-        result = super()._message_get_suggested_recipients()
+    def _message_get_suggested_recipients(self, **kwargs):
+        result = super()._message_get_suggested_recipients(**kwargs)
         reason = self._fields["partner_id"].string
         for one in self:
             one._message_add_suggested_recipient(

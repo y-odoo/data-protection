@@ -361,10 +361,10 @@ class ActivityFlow(ActivityCase):
             }
         )
         suggested_recipients = consent._message_get_suggested_recipients()
-        recipient = suggested_recipients[0]
-        self.assertEqual(consent.partner_id.id, recipient["partner_id"])
-        self.assertIn(consent.partner_id.name, recipient["name"])
-        self.assertIn(consent.partner_id.email, recipient["email"])
+        recipient = suggested_recipients[consent.id][0]
+        self.assertEqual(consent.partner_id.id, recipient[0])
+        self.assertIn(consent.partner_id.name, recipient[1])
+        self.assertIn(consent.partner_id.email, recipient[2])
 
     def test_compute_consent_count(self):
         """Test that consent_count is correctly updated."""

@@ -9,7 +9,7 @@ class MailMail(models.Model):
     _inherit = "mail.mail"
 
     def _postprocess_sent_message(
-        self, success_pids, failure_reason=False, failure_type=None
+        self, success_pids, failure_reason=False, failure_type=None, **kwargs
     ):
         """Write consent status after sending message."""
         # Know if mail was successfully sent to a privacy consent
@@ -36,9 +36,10 @@ class MailMail(models.Model):
             success_pids=success_pids,
             failure_reason=failure_reason,
             failure_type=failure_type,
+            **kwargs,
         )
 
-    def _prepare_outgoing_body(self):
+    def _prepare_outgoing_body(self, **kwargs):
         """Replace privacy consent magic links.
 
         This replacement is done here instead of directly writing it into
@@ -47,7 +48,7 @@ class MailMail(models.Model):
         which would enable any reader of such thread to impersonate the
         subject and choose in its behalf.
         """
-        result = super()._prepare_outgoing_body()
+        result = super()._prepare_outgoing_body(**kwargs)
         # Avoid polluting other model mails
         if self.model != "privacy.consent":
             return result
