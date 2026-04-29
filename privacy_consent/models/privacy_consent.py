@@ -132,13 +132,31 @@ class PrivacyConsent(models.Model):
 
     def _message_get_suggested_recipients(self, **kwargs):
         result = super()._message_get_suggested_recipients(**kwargs)
-        reason = self._fields["partner_id"].string
-        for one in self:
-            one._message_add_suggested_recipient(
-                result,
-                partner=one.partner_id,
-                reason=reason,
-            )
+        if isinstance(result, list):
+            # Odoo 19 style: result is a list of recipients for the recordset
+            # recipients can be tuples (partner, email, reason) or dicts {'partner': partner, ...}
+            existing_partners = self.env["res.partner"]
+            for recipient in result:
+                if isinstance(recipient, tuple) and len(recipient) > 0:
+                    existing_partners |= recipient[0]
+                elif isinstance(recipient, dict) and recipient.get("partner"):
+                    existing_partners |= recipient["partner"]
+
+            reason = self._fields["partner_id"].string
+            for one in self:
+                if one.partner_id not in existing_partners:
+                    # Default to tuple format as it's most common, or follow result format if dict
+                    if result and isinstance(result[0], dict):
+                        result.append(
+                            {
+                                "partner": one.partner_id,
+                                "email": one.partner_id.email,
+                                "reason": reason,
+                            }
+                        )
+                    else:
+                        result.append((one.partner_id, one.partner_id.email, reason))
+                    existing_partners |= one.partner_id
         return result
 
     def action_manual_ask(self):

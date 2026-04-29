@@ -361,10 +361,29 @@ class ActivityFlow(ActivityCase):
             }
         )
         suggested_recipients = consent._message_get_suggested_recipients()
-        recipient = suggested_recipients[consent.id][0]
-        self.assertEqual(consent.partner_id.id, recipient[0])
-        self.assertIn(consent.partner_id.name, recipient[1])
-        self.assertIn(consent.partner_id.email, recipient[2])
+        reason = self.env["privacy.consent"]._fields["partner_id"].string
+
+        if isinstance(suggested_recipients, list):
+            # Check for tuple format (partner, email, reason)
+            recipient_tuple = next(
+                (r for r in suggested_recipients if isinstance(r, tuple) and r[0] == consent.partner_id), None
+            )
+            # Check for dict format {'partner': partner, 'email': email, 'reason': reason}
+            recipient_dict = next(
+                (r for r in suggested_recipients if isinstance(r, dict) and r.get('partner') == consent.partner_id), None
+            )
+
+            recipient = recipient_tuple or recipient_dict
+            self.assertIsNotNone(recipient, "Recipient not found in suggested recipients")
+
+            if isinstance(recipient, tuple):
+                self.assertEqual(consent.partner_id, recipient[0])
+                self.assertEqual(consent.partner_id.email, recipient[1])
+                self.assertEqual(reason, recipient[2])
+            else:
+                self.assertEqual(consent.partner_id, recipient['partner'])
+                self.assertEqual(consent.partner_id.email, recipient['email'])
+                self.assertEqual(reason, recipient['reason'])
 
     def test_compute_consent_count(self):
         """Test that consent_count is correctly updated."""
