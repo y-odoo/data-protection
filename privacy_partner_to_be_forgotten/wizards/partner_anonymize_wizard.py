@@ -18,7 +18,7 @@ class PartnerAnonymizeWizard(models.TransientModel):
     @api.model
     def default_get(self, fields_list):
         res = super().default_get(fields_list)
-        active_ids = self._context.get("active_ids")
+        active_ids = self.env.context.get("active_ids")
         if "partner_ids" in fields_list and active_ids:
             domain = [
                 ("id", "child_of", active_ids),

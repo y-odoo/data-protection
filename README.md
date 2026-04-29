@@ -1,9 +1,8 @@
-
-[![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/data-protection&target_branch=18.0)
-[![Pre-commit Status](https://github.com/OCA/data-protection/actions/workflows/pre-commit.yml/badge.svg?branch=18.0)](https://github.com/OCA/data-protection/actions/workflows/pre-commit.yml?query=branch%3A18.0)
-[![Build Status](https://github.com/OCA/data-protection/actions/workflows/test.yml/badge.svg?branch=18.0)](https://github.com/OCA/data-protection/actions/workflows/test.yml?query=branch%3A18.0)
-[![codecov](https://codecov.io/gh/OCA/data-protection/branch/18.0/graph/badge.svg)](https://codecov.io/gh/OCA/data-protection)
-[![Translation Status](https://translation.odoo-community.org/widgets/data-protection-18-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/data-protection-18-0/?utm_source=widget)
+[![Runboat](https://img.shields.io/badge/runboat-Try%20me-875A7B.png)](https://runboat.odoo-community.org/builds?repo=OCA/data-protection&target_branch=19.0)
+[![Pre-commit Status](https://github.com/OCA/data-protection/actions/workflows/pre-commit.yml/badge.svg?branch=19.0)](https://github.com/OCA/data-protection/actions/workflows/pre-commit.yml?query=branch%3A19.0)
+[![Build Status](https://github.com/OCA/data-protection/actions/workflows/test.yml/badge.svg?branch=19.0)](https://github.com/OCA/data-protection/actions/workflows/test.yml?query=branch%3A19.0)
+[![codecov](https://codecov.io/gh/OCA/data-protection/branch/19.0/graph/badge.svg)](https://codecov.io/gh/OCA/data-protection)
+[![Translation Status](https://translation.odoo-community.org/widgets/data-protection-19-0/-/svg-badge.svg)](https://translation.odoo-community.org/engage/data-protection-19-0/?utm_source=widget)
 
 <!-- /!\ do not modify above this line -->
 
@@ -19,12 +18,13 @@ data-protection
 
 Available addons
 ----------------
-addon | version | maintainers | summary
---- | --- | --- | ---
-[base_export_anonymize](base_export_anonymize/) | 18.0.1.0.0 |  | Anonymize certain fields for a group of users when exporting them directly or via relational fields.
-[privacy](privacy/) | 18.0.1.0.0 |  | Provides data privacy and protection features to comply to regulations, such as GDPR.
-[privacy_consent](privacy_consent/) | 18.0.1.0.0 |  | Allow people to explicitly accept or reject inclusion in some activity, GDPR compliant
-[privacy_partner_to_be_forgotten](privacy_partner_to_be_forgotten/) | 18.0.1.0.0 |  | Anonymize partner data for GDPR compliance
+
+ addon                                                               | version    | maintainers | summary
+---------------------------------------------------------------------|------------|-------------|------------------------------------------------------------------------------------------------------
+ [base_export_anonymize](base_export_anonymize/)                     | 19.0.1.0.0 |             | Anonymize certain fields for a group of users when exporting them directly or via relational fields.
+ [privacy](privacy/)                                                 | 19.0.1.0.0 |             | Provides data privacy and protection features to comply to regulations, such as GDPR.
+ [privacy_consent](privacy_consent/)                                 | 19.0.1.0.0 |             | Allow people to explicitly accept or reject inclusion in some activity, GDPR compliant
+ [privacy_partner_to_be_forgotten](privacy_partner_to_be_forgotten/) | 19.0.1.0.0 |             | Anonymize partner data for GDPR compliance
 
 [//]: # (end addons)
 

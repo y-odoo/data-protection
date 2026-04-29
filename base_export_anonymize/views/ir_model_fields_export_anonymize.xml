@@ -6,7 +6,7 @@
         <field name="model">ir.model.fields.export.anonymize</field>
         <field name="arch" type="xml">
             <list editable="bottom">
-                <field name="field_id" />
+                <field name="field_id"/>
             </list>
         </field>
     </record>
@@ -24,8 +24,8 @@
 
     <record model="ir.ui.menu" id="ir_model_fields_export_anonymize_menu">
         <field name="name">Fields Export Anonymize</field>
-        <field name="parent_id" ref="base.next_id_9" />
-        <field name="action" ref="ir_model_fields_export_anonymize_act_window" />
-        <field name="sequence" eval="16" />
+        <field name="parent_id" ref="base.next_id_9"/>
+        <field name="action_id" ref="ir_model_fields_export_anonymize_act_window"/>
+        <field name="sequence" eval="16"/>
     </record>
 </odoo>

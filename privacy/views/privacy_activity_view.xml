@@ -13,7 +13,7 @@
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <field name="active" invisible="1" />
+                        <field name="active" invisible="1"/>
                         <widget
                             name="web_ribbon"
                             title="Archived"
@@ -22,24 +22,24 @@
                         />
                     </div>
                     <div class="oe_title">
-                        <label for="name" class="oe_edit_only" />
+                        <label for="name" class="oe_edit_only"/>
                         <h1>
-                            <field name="name" />
+                            <field name="name"/>
                         </h1>
                     </div>
                     <group name="basic">
                         <group name="owners">
-                            <field name="controller_id" />
+                            <field name="controller_id"/>
                         </group>
                         <group name="dates">
-                            <field name="create_date" readonly="1" />
-                            <field name="write_date" readonly="1" />
-                            <field name="write_uid" readonly="1" />
+                            <field name="create_date" readonly="1"/>
+                            <field name="write_date" readonly="1"/>
+                            <field name="write_uid" readonly="1"/>
                         </group>
                     </group>
-                    <separator name="subjects" string="Subjects details" />
+                    <separator name="subjects" string="Subjects details"/>
                     <group name="subjects">
-                        <field name="subject_find" />
+                        <field name="subject_find"/>
                         <field
                             name="subject_domain"
                             widget="domain"
@@ -48,23 +48,23 @@
                             invisible="not subject_find"
                         />
                     </group>
-                    <separator name="processors" string="Processors" />
+                    <separator name="processors" string="Processors"/>
                     <group name="processors">
                         <field name="processor_ids" widget="many2many">
                             <list string="processors">
-                                <field name="name" />
-                                <field name="email" />
-                                <field name="country_id" />
+                                <field name="name"/>
+                                <field name="email"/>
+                                <field name="country_id"/>
                             </list>
                         </field>
                     </group>
                     <notebook string="Details" name="advanced">
                         <page string="Description">
-                            <field name="description" nolabel="1" />
+                            <field name="description" nolabel="1"/>
                         </page>
                     </notebook>
                 </sheet>
-                <chatter />
+                <chatter/>
             </form>
         </field>
     </record>
@@ -73,9 +73,9 @@
         <field name="model">privacy.activity</field>
         <field name="arch" type="xml">
             <list>
-                <field name="name" />
-                <field name="controller_id" />
-                <field name="processor_ids" />
+                <field name="name"/>
+                <field name="controller_id"/>
+                <field name="processor_ids"/>
             </list>
         </field>
     </record>
@@ -84,16 +84,16 @@
         <field name="model">privacy.activity</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" />
-                <field name="controller_id" />
-                <field name="processor_ids" />
-                <separator />
+                <field name="name"/>
+                <field name="controller_id"/>
+                <field name="processor_ids"/>
+                <separator/>
                 <filter
                     string="Archived"
                     name="inactive"
                     domain="[('active', '=', False)]"
                 />
-                <separator />
+                <separator/>
                 <group string="Group By" name="groupby">
                     <filter
                         name="controller_id_groupby"
@@ -119,7 +119,7 @@
         </field>
     </record>
     <menuitem
-        action="activity_action"
+        action_id="activity_action"
         groups="group_data_protection_user"
         id="menu_privacy_activity"
         parent="menu_data_protection_master_data"

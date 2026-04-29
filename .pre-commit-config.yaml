@@ -48,11 +48,11 @@ repos:
       # update the NOT INSTALLABLE ADDONS section above
       - id: oca-update-pre-commit-excluded-addons
       - id: oca-fix-manifest-website
-        args: ["https://github.com/OCA/data-protection"]
+        args: [ "https://github.com/OCA/data-protection" ]
       - id: oca-gen-addon-readme
         args:
           - --addons-dir=.
-          - --branch=18.0
+          - --branch=19.0
           - --org-name=OCA
           - --repo-name=data-protection
           - --if-source-changed
@@ -75,7 +75,7 @@ repos:
           - --write
           - --list-different
           - --ignore-unknown
-        types: [text]
+        types: [ text ]
         files: \.(css|htm|html|js|json|jsx|less|md|scss|toml|ts|xml|yaml|yml)$
         language: node
         additional_dependencies:
@@ -90,7 +90,7 @@ repos:
           - --color
           - --fix
         verbose: true
-        types: [javascript]
+        types: [ javascript ]
         language: node
         additional_dependencies:
           - "eslint@9.12.0"
@@ -106,7 +106,7 @@ repos:
         exclude: /README\.rst$|\.pot?$
       - id: debug-statements
       - id: fix-encoding-pragma
-        args: ["--remove"]
+        args: [ "--remove" ]
       - id: check-case-conflict
       - id: check-docstring-first
       - id: check-executables-have-shebangs
@@ -116,12 +116,12 @@ repos:
       - id: check-symlinks
       - id: check-xml
       - id: mixed-line-ending
-        args: ["--fix=lf"]
+        args: [ "--fix=lf" ]
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.6.8
     hooks:
       - id: ruff
-        args: [--fix, --exit-non-zero-on-fix]
+        args: [ --fix, --exit-non-zero-on-fix ]
       - id: ruff-format
   - repo: https://github.com/OCA/pylint-odoo
     rev: v9.1.3
