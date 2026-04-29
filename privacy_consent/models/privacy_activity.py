@@ -64,6 +64,7 @@ class PrivacyActivity(models.Model):
         groups = self.env["privacy.consent"]._read_group(
             [("activity_id", "in", self.ids)],
             ["activity_id"],
+            ["__count"],
         )
         for activity, count in groups:
             activity.consent_count = count

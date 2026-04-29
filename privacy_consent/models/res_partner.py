@@ -25,6 +25,7 @@ class ResPartner(models.Model):
         groups = self.env["privacy.consent"]._read_group(
             [("partner_id", "in", self.ids)],
             ["partner_id"],
+            ["__count"],
         )
         for partner, count in groups:
             partner.privacy_consent_count = count
