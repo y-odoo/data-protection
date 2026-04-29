@@ -10,17 +10,17 @@
         <field name="state">code</field>
         <field name="code">
             for consent in records:
-            email = consent.partner_id.email
-            # Skip records without email, although highly improbable
-            if not email:
-            continue
-            # Choose method to sync acceptance and blacklisting
-            if consent.accepted:
-            method = env["mail.blacklist"]._remove
-            else:
-            method = env["mail.blacklist"]._add
-            # Apply user desire
-            method(email)
+                email = consent.partner_id.email
+                # Skip records without email, although highly improbable
+                if not email:
+                    continue
+                # Choose method to sync acceptance and blacklisting
+                if consent.accepted:
+                    method = env["mail.blacklist"]._remove
+                else:
+                    method = env["mail.blacklist"]._add
+                # Apply user desire
+                method(email)
         </field>
     </record>
 </odoo>
