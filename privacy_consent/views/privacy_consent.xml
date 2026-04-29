@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- Copyright 2018 Tecnativa - Jairo Llopis
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
-<data>
+<odoo>
     <record model="ir.ui.view" id="consent_form">
         <field name="name">Privacy Consent Form</field>
         <field name="model">privacy.consent</field>
@@ -64,23 +64,21 @@
                     domain="[('active', '=', False)]"
                 />
                 <separator/>
-                <group string="Group By" name="groupby">
-                    <filter
-                        name="activity_id_groupby"
-                        string="Activity"
-                        context="{'group_by': 'activity_id'}"
-                    />
-                    <filter
-                        name="state_groupby"
-                        string="State"
-                        context="{'group_by': 'state'}"
-                    />
-                    <filter
-                        name="accepted_groupby"
-                        string="Accepted"
-                        context="{'group_by': 'accepted'}"
-                    />
-                </group>
+                <filter
+                    name="activity_id_groupby"
+                    string="Activity"
+                    context="{'group_by': 'activity_id'}"
+                />
+                <filter
+                    name="state_groupby"
+                    string="State"
+                    context="{'group_by': 'state'}"
+                />
+                <filter
+                    name="accepted_groupby"
+                    string="Accepted"
+                    context="{'group_by': 'accepted'}"
+                />
             </search>
         </field>
     </record>
@@ -91,8 +89,8 @@
         <field name="view_mode">list,form</field>
     </record>
     <menuitem
-        action_id="consent_action"
+        action="consent_action"
         id="menu_privacy_consent"
         parent="privacy.menu_data_protection_master_data"
     />
-</data>
+</odoo>

@@ -2,16 +2,17 @@
 <!-- Copyright 2018 Tecnativa - Jairo Llopis
      Copyright 2019 Tecnativa - Cristina Martin R.
      License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
-<data>
+<odoo>
     <!-- Mail templates -->
     <record id="template_consent" model="mail.template">
-        <field name="auto_delete" eval="False" />
+        <field name="auto_delete" eval="False"/>
         <field name="name">Personal data processing consent request</field>
         <field
             name="subject"
-        >Data processing consent request for {{ object.activity_id.display_name }}</field>
-        <field name="model_id" ref="model_privacy_consent" />
-        <field name="use_default_to" eval="True" />
+        >Data processing consent request for {{ object.activity_id.display_name }}
+        </field>
+        <field name="model_id" ref="model_privacy_consent"/>
+        <field name="use_default_to" eval="True"/>
         <field name="lang">{{ object.partner_id.lang }}</field>
         <field name="body_html" type="html">
             <div
@@ -42,18 +43,20 @@
                                 style="padding:15px 20px 0px 20px; font-size:16px;"
                             >
                                 <p>
-                                    Hello, <t t-out="object.partner_id.name" />
+                                    Hello,
+                                    <t t-out="object.partner_id.name"/>
                                 </p>
                                 <p>
-                                    We contacted you to ask you to give us your explicit consent to include your data in a data processing activity called
+                                    We contacted you to ask you to give us your explicit consent to include your data in
+                                    a data processing activity called
                                     <b
-                                    t-out="object.activity_id.display_name"
-                                />, property of
+                                        t-out="object.activity_id.display_name"
+                                    />, property of
                                     <i
-                                    t-out="object.activity_id.controller_id.display_name"
-                                />
+                                        t-out="object.activity_id.controller_id.display_name"
+                                    />
                                 </p>
-                                <t t-out="object.activity_id.description" />
+                                <t t-out="object.activity_id.description"/>
                                 <p>
                                     <t t-if="object.state == 'answered'">
                                         The last time you answered, you
@@ -63,11 +66,11 @@
                                     </t>
 
                                     <t t-if="object.accepted">
-                                    <b>accepted</b>
-                                </t>
+                                        <b>accepted</b>
+                                    </t>
                                     <t t-else="">
-                                    <b>rejected</b>
-                                </t>
+                                        <b>rejected</b>
+                                    </t>
                                     such data processing.
                                 </p>
                                 <p>
@@ -103,7 +106,8 @@
                                 style="padding:15px 20px 15px 20px; font-size:16px;"
                             >
                                 <p>
-                                    If you need further information, please respond to this email and we will attend your request as soon as possible.
+                                    If you need further information, please respond to this email and we will attend
+                                    your request as soon as possible.
                                 </p>
                                 <p>
                                     Thank you!
@@ -119,10 +123,11 @@
                                 <p>
                                     Sent by
                                     <a href="/" style="color:#717188;">
-                                    <t
-                                        t-out="object.activity_id.controller_id.display_name"
-                                    />
-                                </a>.
+                                        <t
+                                            t-out="object.activity_id.controller_id.display_name"
+                                        />
+                                    </a>
+                                    .
                                 </p>
                             </td>
                         </tr>
@@ -136,56 +141,57 @@
         <field name="name">New Consent</field>
         <field name="description">Privacy consent request created</field>
         <field name="res_model">privacy.consent</field>
-        <field name="default" eval="False" />
-        <field name="hidden" eval="False" />
-        <field name="internal" eval="True" />
+        <field name="default" eval="False"/>
+        <field name="hidden" eval="False"/>
+        <field name="internal" eval="True"/>
     </record>
     <record id="mt_consent_acceptance_changed" model="mail.message.subtype">
         <field name="name">Acceptance Changed by Subject</field>
         <field name="description">Acceptance status updated by subject</field>
         <field name="res_model">privacy.consent</field>
-        <field name="default" eval="False" />
-        <field name="hidden" eval="False" />
-        <field name="internal" eval="True" />
+        <field name="default" eval="False"/>
+        <field name="hidden" eval="False"/>
+        <field name="internal" eval="True"/>
     </record>
     <record id="mt_consent_state_changed" model="mail.message.subtype">
         <field name="name">State Changed</field>
         <field name="description">Privacy consent request state changed</field>
         <field name="res_model">privacy.consent</field>
-        <field name="default" eval="False" />
-        <field name="hidden" eval="False" />
-        <field name="internal" eval="True" />
+        <field name="default" eval="False"/>
+        <field name="hidden" eval="False"/>
+        <field name="internal" eval="True"/>
     </record>
     <record id="mt_activity_consent_new" model="mail.message.subtype">
         <field name="name">New Consent</field>
         <field name="description">Privacy consent request created</field>
         <field name="res_model">privacy.activity</field>
-        <field name="default" eval="True" />
-        <field name="hidden" eval="False" />
-        <field name="internal" eval="True" />
-        <field name="parent_id" ref="mt_consent_consent_new" />
+        <field name="default" eval="True"/>
+        <field name="hidden" eval="False"/>
+        <field name="internal" eval="True"/>
+        <field name="parent_id" ref="mt_consent_consent_new"/>
         <field name="relation_field">activity_id</field>
     </record>
     <record id="mt_activity_acceptance_changed" model="mail.message.subtype">
         <field name="name">Acceptance Changed</field>
         <field
             name="description"
-        >Privacy consent request acceptance status changed</field>
+        >Privacy consent request acceptance status changed
+        </field>
         <field name="res_model">privacy.activity</field>
-        <field name="default" eval="True" />
-        <field name="hidden" eval="False" />
-        <field name="internal" eval="True" />
-        <field name="parent_id" ref="mt_consent_acceptance_changed" />
+        <field name="default" eval="True"/>
+        <field name="hidden" eval="False"/>
+        <field name="internal" eval="True"/>
+        <field name="parent_id" ref="mt_consent_acceptance_changed"/>
         <field name="relation_field">activity_id</field>
     </record>
     <record id="mt_activity_state_changed" model="mail.message.subtype">
         <field name="name">State Changed</field>
         <field name="description">Privacy consent request state changed</field>
         <field name="res_model">privacy.activity</field>
-        <field name="default" eval="False" />
-        <field name="hidden" eval="False" />
-        <field name="internal" eval="True" />
-        <field name="parent_id" ref="mt_consent_state_changed" />
+        <field name="default" eval="False"/>
+        <field name="hidden" eval="False"/>
+        <field name="internal" eval="True"/>
+        <field name="parent_id" ref="mt_consent_state_changed"/>
         <field name="relation_field">activity_id</field>
     </record>
-</data>
+</odoo>
